@@ -1,0 +1,59 @@
+<div class="container py-4">
+  <div class="row text-center align-items-center">
+    <div class="col-6">
+      <button mat-raised-button color="accent" (click)="openDialog()">
+        Utwórz nową notatkę
+      </button>
+    </div>
+    <div class="col-6">
+      <mat-form-field subscriptSizing="dynamic">
+        <mat-label>Wybierz status</mat-label>
+        <mat-select (selectionChange)="filterChanged($event)">
+          <mat-option>Wszystkie</mat-option>
+          <mat-option value="DONE">Ukończone</mat-option>
+          <mat-option value="IN_PROGRESS">W trakcie</mat-option>
+          <mat-option value="OPEN">Otwarte</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+  </div>
+  <hr />
+  <div class="row">
+    <div class="col-6 offset-3">
+      <ng-container *ngFor="let t of filteredTodos; let i = index">
+        <mat-card class="my-2 p-4">
+          <mat-card-title class="mb-3 p-0 text-dark">{{
+            t.title
+          }}</mat-card-title>
+          <mat-card-content class="p-0 text-dark d-flex flex-column">
+            <div>
+              <p class="lead">{{ t.description }}</p>
+            </div>
+            <div class="d-flex align-items-center my-3 mb-0">
+              <div>
+                <mat-form-field subscriptSizing="dynamic">
+                  <mat-label>Wybierz status</mat-label>
+                  <mat-select
+                    [(value)]="t.status"
+                    (selectionChange)="statusChanged($event, t.id, i)"
+                  >
+                    <mat-option value="DONE">Ukończone</mat-option>
+                    <mat-option value="IN_PROGRESS">W trakcie</mat-option>
+                    <mat-option value="OPEN">Otwarte</mat-option>
+                  </mat-select>
+                </mat-form-field>
+              </div>
+              <span class="flex-grow-1"></span>
+              <mat-icon color="warn" (click)="delete(t.id)">delete</mat-icon>
+            </div>
+          </mat-card-content>
+        </mat-card>
+      </ng-container>
+      <ng-container *ngIf="filteredTodos.length === 0"
+        ><h1 class="text-center mt-4">
+          Brak notatek dla wybranej kategorii.
+        </h1></ng-container
+      >
+    </div>
+  </div>
+</div>

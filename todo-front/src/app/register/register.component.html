@@ -1,0 +1,70 @@
+<div class="text-center">
+  <div class="login-form">
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-md-8">
+          <div class="card">
+            <div
+              class="card-header"
+              style="font-size: 2rem; font-family: Calibri, sans-serif"
+            >
+              Rejestracja
+            </div>
+            <div class="card-body">
+              <form #registerForm="ngForm" (ngSubmit)="register(registerForm)">
+                <div class="form-group row">
+                  <label
+                    for="username"
+                    class="col-md-4 col-form-label text-md-right"
+                    >Nazwa</label
+                  >
+                  <div class="col-md-6">
+                    <input
+                      type="text"
+                      id="username"
+                      class="form-control"
+                      placeholder="Wprowadź nazwę"
+                      name="username"
+                      required
+                      autofocus
+                      ngModel
+                    />
+                  </div>
+                </div>
+
+                <div class="form-group row">
+                  <label
+                    for="password"
+                    class="col-md-4 col-form-label text-md-right"
+                    >Hasło</label
+                  >
+                  <div class="col-md-6">
+                    <input
+                      type="password"
+                      id="password"
+                      class="form-control"
+                      placeholder="Wprowadź hasło"
+                      name="password"
+                      required
+                      ngModel
+                    />
+                  </div>
+                </div>
+
+                <div class="col-md-6 offset-md-4 d-flex flex-column">
+                  <button
+                    type="submit"
+                    [disabled]="registerForm.invalid"
+                    class="btn btn-primary d-block flex-grow-1 mb-3"
+                  >
+                    Zarejestruj
+                  </button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

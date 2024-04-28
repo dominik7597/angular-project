@@ -1,0 +1,45 @@
+<div class="container">
+  <div class="row">
+    <div class="col-12 text-center">
+      <h2 class="modal-header text-center mt-3">Utwórz nową notatkę</h2>
+    </div>
+    <form #loginForm="ngForm">
+      <div class="col-12">
+        <p class="d-flex flex-column flex-grow-1 py-4">
+          <mat-form-field>
+            <mat-label>Tytuł</mat-label>
+            <input
+              matInput
+              name="title"
+              [(ngModel)]="title"
+              [value]="title"
+              required
+            />
+          </mat-form-field>
+          <br />
+          <mat-form-field>
+            <mat-label>Opis</mat-label>
+            <textarea
+              matInput
+              name="description"
+              [(ngModel)]="description"
+              [value]="description"
+              required
+            ></textarea>
+          </mat-form-field>
+        </p>
+      </div>
+    </form>
+    <div class="col-12 d-flex justify-content-end gap-2">
+      <button mat-flat-button color="warn" (click)="onCancel()">Anuluj</button>
+      <button
+        mat-raised-button
+        color="primary"
+        [disabled]="loginForm.invalid"
+        (click)="create()"
+      >
+        Utwórz
+      </button>
+    </div>
+  </div>
+</div>
